@@ -1,6 +1,7 @@
 'use client';
 
 import { HeaderControls } from "@/components/header-controls";
+import Image from "next/image";
 
 export function Header() {
   const handleLogoClick = () => {
@@ -14,11 +15,11 @@ export function Header() {
           className="flex items-center gap-4 hover:opacity-80 transition-opacity cursor-pointer"
           onClick={handleLogoClick}
         >
-          <img
+          <Image
             src="/logo.png"
             alt="星尘网盘搜索 Logo"
-            width="40"
-            height="40"
+            width={40}
+            height={40}
           />
           <h1 className="text-xl font-bold">星尘网盘搜索</h1>
         </div>

@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Toggle } from "@/components/ui/toggle";
 import { toast } from "sonner";
-import { useTheme } from "next-themes";
-import { Moon, Sun, Copy, ExternalLink, Filter, SortAsc, SortDesc } from "lucide-react";
+import { Copy, ExternalLink, SortAsc, SortDesc } from "lucide-react";
 
 // 网盘类型选项
 const CLOUD_TYPES = [
@@ -26,24 +24,33 @@ const CLOUD_TYPES = [
   { id: 'ed2k', name: '电驴链接', icon: 'https://favicon.im/emule-project.net' }
 ];
 
+// 定义搜索结果类型
+interface SearchResultItem {
+  note: string;
+  url: string;
+  password?: string;
+  datetime: string;
+}
+
+interface SearchResults {
+  total: number;
+  merged_by_type: Record<string, SearchResultItem[]>;
+}
+
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCloudTypes, setSelectedCloudTypes] = useState<string[]>([...CLOUD_TYPES.map(t => t.id)]); // 默认全选
-  const [searchResults, setSearchResults] = useState<any>(null);
+  const [searchResults, setSearchResults] = useState<SearchResults | null>(null);
   const [activeCloudType, setActiveCloudType] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [apiStatus, setApiStatus] = useState<{status: string, message?: string} | null>(null);
   const [healthCheckLoading, setHealthCheckLoading] = useState(true);
   const [sortBy, setSortBy] = useState<'datetime' | 'name'>('datetime'); // 排序方式
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc'); // 排序顺序
-  const { theme, setTheme } = useTheme();
   const toastRef = useRef<number | string | null>(null);
-  const [isClient, setIsClient] = useState(false);
 
   // 页面加载时检查API状态
   useEffect(() => {
-    setIsClient(true);
     checkApiHealth();
     
     // 检查URL参数
@@ -62,28 +69,16 @@ export default function Home() {
       const response = await fetch('/api/search');
       if (response.ok) {
         const data = await response.json();
-        setApiStatus({
-          status: 'ok',
-          message: `服务正常运行 - ${data.plugin_count} 个插件可用`
-        });
-      } else {
-        setApiStatus({
-          status: 'error',
-          message: `服务异常 - ${response.status}`
-        });
       }
     } catch (err) {
-      setApiStatus({
-        status: 'error',
-        message: '无法连接到服务'
-      });
+      console.error('API健康检查失败:', err);
     } finally {
       setHealthCheckLoading(false);
     }
   };
 
   // 排序函数
-  const sortResults = (results: any[]) => {
+  const sortResults = (results: SearchResultItem[]) => {
     return [...results].sort((a, b) => {
       if (sortBy === 'datetime') {
         const dateA = new Date(a.datetime).getTime();
@@ -193,6 +188,7 @@ export default function Home() {
     const typeObj = CLOUD_TYPES.find(t => t.id === type);
     return typeObj ? (
       <span className="inline-flex items-center gap-1">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img 
           src={typeObj.icon} 
           alt={`${typeObj.name} favicon`} 
@@ -295,6 +291,7 @@ export default function Home() {
                         onClick={() => toggleCloudType(type.id)}
                         className="px-3 py-1.5 text-sm rounded-full transition-colors flex items-center gap-1 h-auto"
                       >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img 
                           src={type.icon} 
                           alt={`${type.name} favicon`} 
@@ -364,7 +361,7 @@ export default function Home() {
                     {/* 排序控件 */}
                     <div className="flex flex-wrap items-center gap-2 mb-6">
                       <div className="flex items-center gap-1.5">
-                        <Filter className="h-4 w-4 text-muted-foreground" />
+                        <SortAsc className="h-4 w-4 text-muted-foreground" />
                         <Label className="text-foreground font-medium text-sm">排序:</Label>
                       </div>
                       <Button
@@ -403,7 +400,7 @@ export default function Home() {
                             </span>
                           </h3>
                           <div className="space-y-4 sm:space-y-5">
-                            {sortResults(searchResults.merged_by_type[cloudType]).map((item: any, index: number) => (
+                            {sortResults(searchResults.merged_by_type[cloudType]).map((item: SearchResultItem, index: number) => (
                               <Card key={index} className="hover:shadow-md transition-all duration-200 border-l-4 border-l-primary">
                                 <CardHeader className="pb-3">
                                   <div className="flex flex-wrap justify-between items-start gap-2">
@@ -453,7 +450,7 @@ export default function Home() {
                                         <Button
                                           variant="outline"
                                           size="sm"
-                                          onClick={() => copyToClipboard(item.password, '提取码')}
+                                          onClick={() => copyToClipboard(item.password || '', '提取码')}
                                           className="flex items-center gap-1.5"
                                         >
                                           <Copy className="h-4 w-4" />
@@ -481,7 +478,7 @@ export default function Home() {
                           </span>
                         </h3>
                         <div className="space-y-4 sm:space-y-5">
-                          {sortResults(searchResults.merged_by_type[activeCloudType]).map((item: any, index: number) => (
+                          {sortResults(searchResults.merged_by_type[activeCloudType]).map((item: SearchResultItem, index: number) => (
                             <Card key={index} className="hover:shadow-md transition-all duration-200 border-l-4 border-l-primary">
                               <CardHeader className="pb-3">
                                 <div className="flex flex-wrap justify-between items-start gap-2">
@@ -531,7 +528,7 @@ export default function Home() {
                                       <Button
                                         variant="outline"
                                         size="sm"
-                                        onClick={() => copyToClipboard(item.password, '提取码')}
+                                        onClick={() => copyToClipboard(item.password || '', '提取码')}
                                         className="flex items-center gap-1.5"
                                       >
                                         <Copy className="h-4 w-4" />
