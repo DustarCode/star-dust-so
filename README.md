@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Star Dust SO
 
-## Getting Started
+这是一个使用现代 Web 技术构建的应用程序。
 
-First, run the development server:
+## 技术栈
+
+- [Next.js](https://nextjs.org/) - React 框架，用于生产环境的 SSR 应用
+- [React](https://reactjs.org/) - JavaScript 库，用于构建用户界面
+- [TypeScript](https://www.typescriptlang.org/) - JavaScript 的超集，添加了静态类型定义
+- [Tailwind CSS](https://tailwindcss.com/) - 实用优先的 CSS 框架
+- [ESLint](https://eslint.org/) - JavaScript 和 TypeScript 的代码质量检查工具
+- [shadcn/ui](https://ui.shadcn.com/) - 基于 Tailwind CSS 的可访问 UI 组件
+
+## 项目配置
+
+- 使用 `src/` 目录组织源代码
+- 使用 App Router 进行页面路由管理
+- 集成 Tailwind CSS 进行样式开发
+- 配置了 ESLint 进行代码规范检查
+
+## 开发指南
+
+### 安装依赖
+
+```bash
+npm install
+```
+
+### 启动开发服务器
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+在浏览器中打开 [http://localhost:3000](http://localhost:3000) 查看应用。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 初始化 shadcn/ui
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npx shadcn@latest init
+```
 
-## Learn More
+### 构建生产版本
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 启动生产服务器
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm start
+```
 
-## Deploy on Vercel
+## 学习资源
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js 文档](https://nextjs.org/docs) - 了解 Next.js 特性和 API
+- [Learn Next.js](https://nextjs.org/learn) - 交互式教程
+- [Tailwind CSS 文档](https://tailwindcss.com/docs) - Tailwind CSS 使用指南
+- [shadcn/ui 文档](https://ui.shadcn.com/docs) - shadcn/ui 使用指南
