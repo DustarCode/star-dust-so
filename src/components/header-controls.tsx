@@ -15,7 +15,7 @@ export function HeaderControls() {
     try {
       const response = await fetch('/api/search');
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
       }
     } catch (err) {
       console.error('API健康检查失败:', err);

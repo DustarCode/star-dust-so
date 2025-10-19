@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -68,7 +68,7 @@ export default function Home() {
     try {
       const response = await fetch('/api/search');
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
       }
     } catch (err) {
       console.error('API健康检查失败:', err);
@@ -96,7 +96,7 @@ export default function Home() {
     });
   };
 
-  const performSearch = async (term: string) => {
+  const performSearch = useCallback(async (term: string) => {
     if (!term.trim()) {
       setError('请输入搜索关键词');
       return;
@@ -158,7 +158,7 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCloudTypes]);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
