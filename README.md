@@ -1,5 +1,7 @@
 # 星尘网盘搜索 (Star Dust SO)
 
+> 本项目基于 [盘搜API](https://github.com/fish2018/pansou) 构建，提供现代化的网盘资源聚合搜索服务
+
 星尘网盘搜索是一个现代化的网盘资源聚合搜索平台，支持多种主流网盘资源的搜索和访问。用户可以通过关键词搜索百度网盘、阿里云盘、夸克网盘等多种网盘资源，并直接访问相关资源。
 
 ## 功能特性
@@ -25,6 +27,7 @@
 
 - [Next.js API Routes](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) - 服务端 API 路由
 - [Vercel](https://vercel.com/) - 云端部署和托管平台
+- [盘搜API](https://github.com/fish2018/pansou) - 网盘资源搜索后端API
 
 ### 开发工具链
 
