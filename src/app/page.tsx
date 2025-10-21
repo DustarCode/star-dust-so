@@ -1,5 +1,7 @@
 'use client';
 
+import Head from 'next/head';
+
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -38,6 +40,11 @@ interface SearchResults {
 }
 
 export default function Home() {
+  // 设置页面SEO信息
+  const pageMeta = {
+    title: "星尘网盘搜索 - 网盘资源聚合搜索平台",
+    description: "星尘网盘搜索是一个专业的网盘资源聚合搜索平台，支持百度网盘、阿里云盘、夸克网盘、迅雷云盘等12种主流网盘资源搜索，提供精准的资源筛选和排序功能，帮助用户快速找到所需资源。"
+  };
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCloudTypes, setSelectedCloudTypes] = useState<string[]>([...CLOUD_TYPES.map(t => t.id)]); // 默认全选
   const [searchResults, setSearchResults] = useState<SearchResults | null>(null);
@@ -225,9 +232,25 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary py-6 sm:py-8 md:py-12 flex flex-col">
-      <div className="flex-grow">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <>
+      <Head>
+        <title>{pageMeta.title}</title>
+        <meta name="description" content={pageMeta.description} />
+        <meta name="keywords" content="网盘搜索, 百度网盘, 阿里云盘, 夸克网盘, 资源搜索, 网盘资源, 磁力链接, 电驴链接" />
+        <meta property="og:title" content={pageMeta.title} />
+        <meta property="og:description" content={pageMeta.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://so.dustpix.com" />
+        <meta property="og:image" content="https://so.dustpix.com/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageMeta.title} />
+        <meta name="twitter:description" content={pageMeta.description} />
+        <meta name="twitter:image" content="https://so.dustpix.com/logo.png" />
+        <link rel="canonical" href="https://so.dustpix.com" />
+      </Head>
+      <div className="min-h-screen bg-gradient-to-br from-background to-secondary py-6 sm:py-8 md:py-12 flex flex-col">
+        <div className="flex-grow">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground sr-only">星尘网盘搜索</h1>
             
@@ -577,26 +600,27 @@ export default function Home() {
             </Card>
           )}
         </div>
-      </div>
-      
-      {/* 免责声明 */}
-      <footer className="py-6 bg-muted border-t border-border mt-auto">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center text-sm text-muted-foreground">
-            <h3 className="font-bold text-base mb-2">免责声明</h3>
-            <p className="mb-2">
-              本站资源均来源于网络，仅供学习交流使用，严禁商业用途。我们不存储任何文件，仅提供搜索服务。
-              使用本站即表示您同意遵守相关法律法规，由此产生的责任与本站无关。
-            </p>
-            <p className="mb-2">
-              资源版权归原作者所有，建议24小时内删除，支持正版。
-            </p>
-            <p className="mt-4 text-xs text-muted-foreground">
-              © {new Date().getFullYear()} 星尘网盘搜索. 保留所有权利.
-            </p>
-          </div>
         </div>
-      </footer>
-    </div>
+        
+        {/* 免责声明 */}
+        <footer className="py-6 bg-muted border-t border-border mt-auto">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="text-center text-sm text-muted-foreground">
+              <h3 className="font-bold text-base mb-2">免责声明</h3>
+              <p className="mb-2">
+                本站资源均来源于网络，仅供学习交流使用，严禁商业用途。我们不存储任何文件，仅提供搜索服务。
+                使用本站即表示您同意遵守相关法律法规，由此产生的责任与本站无关。
+              </p>
+              <p className="mb-2">
+                资源版权归原作者所有，建议24小时内删除，支持正版。
+              </p>
+              <p className="mt-4 text-xs text-muted-foreground">
+                © {new Date().getFullYear()} 星尘网盘搜索. 保留所有权利.
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 }

@@ -83,10 +83,23 @@ NEXT_PUBLIC_API_SEARCH_URL=https://so.252035.xyz/api/search
 NEXT_PUBLIC_API_SEARCH_URL=https://so.252035.xyz/api/search
 ```
 
+根据需要可以创建不同的环境变量文件：
+- `.env.local` - 本地开发环境
+- `.env.production` - 生产环境
+- `.env.development` - 开发环境（如果需要与本地环境区分）
+- `.env.test` - 测试环境
+
 ### 启动开发服务器
 
 ```bash
+# 使用本地环境变量启动（默认）
 npm run dev
+
+# 使用特定环境变量启动
+npm run dev:test
+
+# 使用生产环境变量启动
+npm run dev:prod
 ```
 
 在浏览器中打开 [http://localhost:3000](http://localhost:3000) 查看应用。
@@ -134,9 +147,15 @@ star-dust-so/
 
 ### 自定义脚本
 
-```bash
+```
 # 启动开发服务器
 npm run dev
+
+# 启动测试环境开发服务器
+npm run dev:test
+
+# 启动生产环境开发服务器
+npm run dev:prod
 
 # 构建生产版本
 npm run build
@@ -146,12 +165,6 @@ npm start
 
 # 代码检查
 npm run lint
-
-# 使用测试API启动开发服务器
-npm run dev:test
-
-# 使用生产API启动开发服务器
-npm run dev:prod
 ```
 
 ### 环境变量说明
@@ -159,6 +172,25 @@ npm run dev:prod
 | 变量名 | 说明 | 示例 |
 |--------|------|------|
 | `NEXT_PUBLIC_API_SEARCH_URL` | 搜索API地址 | `https://so.252035.xyz/api/search` |
+
+Next.js 会根据当前环境自动加载相应的环境变量文件：
+- `.env.local` - 本地环境（默认开发时使用）
+- `.env.development` - 开发环境
+- `.env.test` - 测试环境
+- `.env.production` - 生产环境
+
+在 Windows 系统中，可以通过以下方式设置临时环境变量：
+
+```
+# PowerShell
+$env:NODE_ENV="test"
+npm run dev
+```
+
+```cmd
+# CMD
+set NODE_ENV=test && npm run dev
+```
 
 ## 部署
 
