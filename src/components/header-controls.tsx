@@ -8,6 +8,11 @@ import { Moon, Sun } from "lucide-react";
 export function HeaderControls() {
   const [healthCheckLoading, setHealthCheckLoading] = useState(true);
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // 检查API健康状态
   const checkApiHealth = async () => {
@@ -37,9 +42,9 @@ export function HeaderControls() {
       {healthCheckLoading ? (
         <span className="text-muted-foreground text-xs sm:text-sm">检查服务状态...</span>
       ) : (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 bg-blue-500/80 dark:bg-blue-600/80 px-3 py-1 rounded-full backdrop-blur-md border border-white/30 text-white">
           <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
-          <span className="text-green-600 dark:text-green-400 text-xs sm:text-sm">服务正常</span>
+          <span className="text-xs sm:text-sm">服务正常</span>
         </div>
       )}
       
@@ -47,12 +52,15 @@ export function HeaderControls() {
         variant="outline" 
         aria-label="切换主题"
         onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        className="rounded-full"
+        className="rounded-full transition-all duration-300 hover:shadow-md bg-blue-500/80 dark:bg-blue-600/80 backdrop-blur-md border border-white/30 text-white"
+        disabled={!mounted}
       >
-        {theme === 'dark' ? (
-          <Sun className="h-4 w-4 sm:h-5 sm:w-5" />
+        {mounted && theme === 'dark' ? (
+          <Sun className="h-5 w-5" />
+        ) : mounted && theme === 'light' ? (
+          <Moon className="h-5 w-5" />
         ) : (
-          <Moon className="h-4 w-4 sm:h-5 sm:w-5" />
+          <Sun className="h-5 w-5" />
         )}
       </Toggle>
     </div>

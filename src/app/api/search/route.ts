@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
     try {
         // 从环境变量获取健康检查URL
-        const healthUrl = process.env.NEXT_PUBLIC_API_SEARCH_URL?.replace('/search', '/health') || 'https://so.252035.xyz/api/health';
+        const healthUrl = process.env.NEXT_PUBLIC_API_SEARCH_URL?.replace('/search', '/health') || '';
 
         // 转发GET请求到目标API
         const response = await fetch(healthUrl);

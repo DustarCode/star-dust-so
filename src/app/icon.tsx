@@ -3,6 +3,9 @@ import { ImageResponse } from 'next/og';
 // 路由处理程序
 export const runtime = 'edge';
 
+// 启用 ISR 以获得静态生成的优势
+export const revalidate = 3600; // 1小时缓存
+
 // 图标元数据
 export const size = {
   width: 32,
