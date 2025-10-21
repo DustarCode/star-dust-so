@@ -29,7 +29,7 @@ export const SearchForm = memo(({
   cloudTypes
 }: SearchFormProps): React.JSX.Element => {
   return (
-    <Card className="mb-6 sm:mb-8 shadow-xl backdrop-blur-xl bg-white/30 dark:bg-black/30 border border-white/20 dark:border-white/10 rounded-2xl">
+    <Card className="mb-6 sm:mb-8">
       <CardHeader className="pb-4">
         <CardTitle className="text-xl sm:text-2xl">搜索资源</CardTitle>
         <CardDescription>请输入关键词搜索各类网盘资源</CardDescription>
@@ -42,12 +42,12 @@ export const SearchForm = memo(({
               value={searchTerm}
               onChange={(e) => onSearchTermChange(e.target.value)}
               placeholder="请输入搜索关键词，如：电影、电视剧、软件..."
-              className="flex-1 text-base sm:text-lg h-12 sm:h-14 px-4 bg-white/50 dark:bg-black/50 border-white/30 dark:border-white/20 rounded-xl backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.15)] focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="flex-1 text-base sm:text-lg h-12 sm:h-14 px-4 focus:ring-2 focus:ring-primary focus:border-primary focus:shadow-[0_0_0_3px_rgba(96,165,250,0.3)]"
             />
             <Button
               type="submit"
               disabled={loading}
-              className="text-base sm:text-lg font-medium h-12 sm:h-14 px-6 sm:px-8 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 dark:from-blue-600 dark:to-cyan-500 dark:hover:from-blue-700 dark:hover:to-cyan-600 backdrop-blur-md border border-white/30 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_6px_24px_rgba(0,0,0,0.2)] text-white"
+              className="text-base sm:text-lg font-medium h-12 sm:h-14 px-6 sm:px-8 bg-primary text-primary-foreground hover:bg-primary/90 border border-primary focus:shadow-[0_0_0_3px_rgba(96,165,250,0.3)]"
             >
               {loading ? (
                 <span className="flex items-center justify-center">

@@ -199,7 +199,7 @@ export default function Home() {
         <meta name="twitter:image" content="https://so.dustpix.com/logo.png" />
         <link rel="canonical" href="https://so.dustpix.com" />
       </Head>
-      <div className="bg-gradient-to-br from-background to-secondary py-6 sm:py-8 md:py-12 flex flex-col backdrop-blur-sm">
+      <div className="bg-gradient-to-br from-background to-secondary py-6 sm:py-8 md:py-12 flex flex-col min-h-screen backdrop-blur-sm">
         <div className="flex-grow">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
@@ -237,7 +237,9 @@ export default function Home() {
             )}
           </div>
         </div>
-        <Disclaimer />
+        <div className="mt-auto">
+          <Disclaimer />
+        </div>
       </div>
     </>
   );

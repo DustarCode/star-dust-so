@@ -9,13 +9,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-purple-600 to-pink-500 text-white hover:from-purple-700 hover:to-pink-600 shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 hover:shadow-primary/40",
         destructive:
-          "bg-gradient-to-r from-red-500 to-orange-500 text-white hover:from-red-600 hover:to-orange-600 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 shadow-lg shadow-red-500/20 hover:shadow-red-500/40",
+          "bg-gradient-to-r from-red-500 to-orange-500 text-white hover:from-red-600 hover:to-orange-600 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 shadow-lg shadow-destructive/20 hover:shadow-destructive/40",
         outline:
-          "border bg-background/80 shadow-lg backdrop-blur-xl hover:bg-accent/50 hover:text-accent-foreground dark:bg-input/20 dark:border-input/50 dark:hover:bg-input/40 border-purple-200/50 dark:border-purple-800/50",
+          "border bg-background/80 shadow-lg backdrop-blur-xl hover:bg-accent/50 hover:text-accent-foreground dark:bg-input/20 dark:border-input/50 dark:hover:bg-input/40 border-primary/50 dark:border-primary/50",
         secondary:
-          "bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:from-blue-600 hover:to-cyan-600 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg shadow-primary/20 hover:shadow-primary/40",
         ghost:
           "hover:bg-accent/50 hover:text-accent-foreground dark:hover:bg-accent/30",
         link: "text-primary underline-offset-4 hover:underline",

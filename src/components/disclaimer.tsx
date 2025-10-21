@@ -4,7 +4,7 @@ import React, { memo } from 'react';
 
 export const Disclaimer = memo((): React.JSX.Element => {
   return (
-    <div className="py-6 bg-white/20 dark:bg-black/20 border-t border-white/20 mt-auto backdrop-blur-xl rounded-t-2xl">
+    <div className="py-6 bg-white/20 dark:bg-black/20 border-t border-white/20 backdrop-blur-xl rounded-t-2xl">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center text-sm text-muted-foreground">
           <h3 className="font-bold text-base mb-2">免责声明</h3>
