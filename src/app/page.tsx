@@ -199,23 +199,25 @@ export default function Home() {
         <meta name="twitter:image" content="https://so.dustpix.com/logo.png" />
         <link rel="canonical" href="https://so.dustpix.com" />
       </Head>
-      <div className="bg-gradient-to-br from-background to-secondary py-6 sm:py-8 md:py-12 flex flex-col min-h-screen backdrop-blur-sm">
+      <div className="bg-gradient-to-br from-background to-secondary py-4 sm:py-6 flex flex-col min-h-screen backdrop-blur-sm">
         <div className="flex-grow">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground sr-only">星尘网盘搜索</h1>
+          <div className="max-w-6xl mx-auto px-3 sm:px-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 sm:mb-6">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground sr-only">星尘网盘搜索</h1>
             </div>
             
-            <SearchForm 
-              searchTerm={searchTerm}
-              onSearchTermChange={setSearchTerm}
-              loading={loading}
-              onSearch={handleSearch}
-              selectedCloudTypes={selectedCloudTypes}
-              onCloudTypesChange={setSelectedCloudTypes}
-              error={error}
-              cloudTypes={CLOUD_TYPES}
-            />
+            <div className="px-1">
+              <SearchForm 
+                searchTerm={searchTerm}
+                onSearchTermChange={setSearchTerm}
+                loading={loading}
+                onSearch={handleSearch}
+                selectedCloudTypes={selectedCloudTypes}
+                onCloudTypesChange={setSelectedCloudTypes}
+                error={error}
+                cloudTypes={CLOUD_TYPES}
+              />
+            </div>
 
             {searchResults && (
               <SearchResults

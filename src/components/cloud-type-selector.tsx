@@ -62,7 +62,7 @@ export const CloudTypeSelector = memo(({
             type="button"
             variant={selectedTypes.includes(type.id) ? "default" : "outline"}
             onClick={() => toggleCloudType(type.id)}
-            className="px-4 py-2 text-sm rounded-full transition-all duration-300 flex items-center gap-2 h-auto shadow-sm hover:shadow-md focus:ring-2 focus:ring-primary focus:shadow-[0_0_0_3px_rgba(96,165,250,0.3)]"
+            className="px-4 py-2 text-sm rounded-full transition-all duration-300 flex items-center gap-2 h-auto shadow-sm hover:shadow-md focus:ring-2 focus:ring-primary focus:shadow-[0_0_0_3px_hsl(var(--primary)/0.3)] data-[state=pressed]:scale-[0.98]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 

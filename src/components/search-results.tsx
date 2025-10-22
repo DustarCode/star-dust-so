@@ -55,11 +55,11 @@ export const SearchResults = memo(({
         {results.merged_by_type && Object.keys(results.merged_by_type).length > 0 ? (
           <>
             {/* 网盘类型标签导航 */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-1.5 mb-5">
               <Button
                 onClick={() => onActiveCloudTypeChange(null)}
                 variant={activeCloudType === null ? "default" : "outline"}
-                className="rounded-full px-4 py-2 h-auto bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 dark:from-blue-600 dark:to-cyan-500 dark:hover:from-blue-700 dark:hover:to-cyan-600 backdrop-blur-md border border-white/30 text-white shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+                className="rounded-full px-3 py-1.5 h-auto text-sm data-[state=pressed]:scale-[0.98]"
               >
                 全部 ({Object.keys(results.merged_by_type).length})
               </Button>
@@ -68,10 +68,10 @@ export const SearchResults = memo(({
                   key={cloudType}
                   onClick={() => onActiveCloudTypeChange(cloudType)}
                   variant={activeCloudType === cloudType ? "default" : "outline"}
-                  className="rounded-full flex items-center gap-1 px-3 py-2 h-auto bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-blue-600 hover:to-cyan-500 dark:from-blue-600 dark:to-cyan-500 dark:hover:from-blue-700 dark:hover:to-cyan-600 backdrop-blur-md border border-white/30 text-white shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+                  className="rounded-full flex items-center gap-1 px-2.5 py-1.5 h-auto text-sm data-[state=pressed]:scale-[0.98]"
                 >
                   {formatCloudTypeName(cloudType)}
-                  <span className="bg-white/50 dark:bg-black/50 text-foreground rounded-full px-2 py-0.5 text-xs font-medium border border-white/30">
+                  <span className="bg-muted text-foreground rounded-full px-1.5 py-0 text-xs font-medium">
                     {results.merged_by_type[cloudType].length}
                   </span>
                 </Button>
@@ -79,29 +79,29 @@ export const SearchResults = memo(({
             </div>
 
             {/* 排序控件 */}
-            <div className="flex flex-wrap items-center gap-2 mb-6">
-              <div className="flex items-center gap-1.5">
-                <SortAsc className="h-4 w-4 text-muted-foreground" />
+            <div className="flex flex-wrap items-center gap-1.5 mb-5">
+              <div className="flex items-center gap-1">
+                <SortAsc className="h-3.5 w-3.5 text-muted-foreground" />
                 <Label className="text-foreground font-medium text-sm">排序:</Label>
               </div>
               <Button
                 variant={sortBy === 'datetime' ? "default" : "outline"}
                 onClick={() => toggleSortBy('datetime')}
-                className="flex items-center gap-1 rounded-full px-3 bg-blue-500/80 hover:bg-blue-600/90 dark:bg-blue-600/80 dark:hover:bg-blue-700/90 backdrop-blur-md border border-white/30 text-white"
+                className="flex items-center gap-1 rounded-full px-2.5 py-1 text-sm data-[state=pressed]:scale-[0.98]"
               >
                 <span>按时间</span>
                 {sortBy === 'datetime' && (
-                  sortOrder === 'asc' ? <SortAsc className="h-4 w-4" /> : <SortDesc className="h-4 w-4" />
+                  sortOrder === 'asc' ? <SortAsc className="h-3.5 w-3.5" /> : <SortDesc className="h-3.5 w-3.5" />
                 )}
               </Button>
               <Button
                 variant={sortBy === 'name' ? "default" : "outline"}
                 onClick={() => toggleSortBy('name')}
-                className="flex items-center gap-1 rounded-full px-3 bg-blue-500/80 hover:bg-blue-600/90 dark:bg-blue-600/80 dark:hover:bg-blue-700/90 backdrop-blur-md border border-white/30 text-white"
+                className="flex items-center gap-1 rounded-full px-2.5 py-1 text-sm data-[state=pressed]:scale-[0.98]"
               >
                 <span>按名称</span>
                 {sortBy === 'name' && (
-                  sortOrder === 'asc' ? <SortAsc className="h-4 w-4" /> : <SortDesc className="h-4 w-4" />
+                  sortOrder === 'asc' ? <SortAsc className="h-3.5 w-3.5" /> : <SortDesc className="h-3.5 w-3.5" />
                 )}
               </Button>
             </div>
